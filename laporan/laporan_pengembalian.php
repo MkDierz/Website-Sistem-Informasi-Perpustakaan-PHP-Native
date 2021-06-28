@@ -10,12 +10,13 @@ $query = mysqli_query($koneksi, "SELECT tgl_pengembalian, SUM(denda)  from penge
 $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 ?>
-
-
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-bordered table-stripped">
-            <thead>
+<div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2 my-6 ">
+    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                    <thead>
                 <tr>
 
                     <th><b>Tanggal </b></th>
@@ -35,6 +36,8 @@ $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
         </table>
     </div>
+</div>
+</div>
 </div>
 
 <?php
