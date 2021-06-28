@@ -1,114 +1,132 @@
 <!DOCTYPE html>
-<!--[if IE 9]> <html class="ie9 no-js" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Perpustakaan</title>
-    <link rel="stylesheet" href="../polished/polished.min.css">
-    <link rel="stylesheet" href="../polished/iconic/css/open-iconic-bootstrap.min.css">
-    <style>
-        .grid-highlight {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            background-color: #5c6ac4;
-            border: 1px solid #202e78;
-            color: #fff;
-        }
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
 
-        hr {
-            margin: 6rem 0;
-        }
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <!--Replace with your tailwind.css once created-->
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <!--Totally optional :) -->
+    <!--Regular Datatables CSS-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 
-        hr+.display-3,
-        hr+.display-2+.display-3 {
-            margin-bottom: 2rem;
-        }
-    </style>
-    <script type="text/javascript">
-        document.documentElement.className =
-            document.documentElement.className.replace('no-js', 'js') +
-            (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure ", "1.1 ") ? ' svg' : ' no-svg');
-    </script>
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+
 </head>
 
-<body>
-    <nav class="navbar navbar-expand p-0">
-        <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr
 
- 0" href="index.html"> Perpustakaan </a>
-        <button class="btn btn-link d-block d-md-none" datatoggle="collapse" data-target="#sidebar-nav" role="button">
-            <span class="oi oi-menu"></span>
-        </button>
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
 
-        <input class="border-dark bg-primary-darkest form-control d-none
-d-md-block w-50 ml-3 mr-2" type="text" placeholder="Search" arialabel="Search">
-        <div class="dropdown d-none d-md-block">
+    <!--Nav-->
+    <nav class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
 
-            <button class="btn btn-link btn-link-primary dropdown-toggle" id="navbar-dropdown" data-toggle="dropdown">
+        <div class="flex flex-wrap items-center">
+            <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
+                <a href="#">
+                    <span class="text-xl pl-2"><i class="em em-grinning"></i> Perpustakaan</span>
+                </a>
+            </div>
 
-            </button>
+            <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
+                <span class="relative w-full">
+                </span>
+            </div>
 
-            <div class="dropdown-menu dropdown-menu-right" id="navbardropdown">
-                <a href="#" class="dropdown-item">Profile</a>
-                <a href="#" class="dropdown-item">Setting</a>
-                <div class="dropdown-divider"></div>
-                <li>
-                    <form action="logout.php" method="post">
-                        <button class="dropdown-item" style="cursor:pointer">Keluar</button>
-                    </form>
-                </li>
+            <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
+                <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <a class="inline-block py-2 px-4 text-white no-underline" href="#">Active</a>
+                    </li>
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">link</a>
+                    </li>
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <div class="relative inline-block">
+                            <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"> <span class="pr-2"><i class="em em-robot_face"></i></span> Hi, User <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg></button>
+                            <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
+                                <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.." id="myInput" onkeyup="filterDD('myDropdown','myInput')">
+                                <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-user fa-fw"></i> Profile</a>
+                                <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-cog fa-fw"></i> Settings</a>
+                                <div class="border border-gray-800"></div>
+                                <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
+
     </nav>
-    <div class="container-fluid h-100 p-0">
-        <div style="min-height: 100%" class="flex-row d-flex align-itemsstretch m-0">
-            <div class="polished-sidebar bg-light col-12 col-md-3 col-lg-2
-p-0 collapse d-md-inline" id="sidebar-nav">
-                <ul class="polished-sidebar-menu ml-0 pt-4 p-0 d-md-block">
-                    <input class="border-dark form-control d-block d-md-none
-mb-4" type="text" placeholder="Search" aria-label="Search" />
-                    <li><a href="#"><span class="oi oi-home"></span>
-                            Home</a></li>
-                    <li><a href="../buku/index.php"><span class="oi oi-book"></span>
-                            Buku</a></li>
-                    <li><a href="../anggota/index.php"><span class="oi oi-people"></span>
-                            Anggota</a></li>
-                    <li><a href="../pengaturan_denda/index.php"><span class="oi oi-cart"></span>
-                            Pengaturan Denda</a></li>
-                    <li><a href="../peminjaman/index.php"><span class="oi oi-cart"></span>
-                            Peminjaman Buku</a></li>
-                    <li><a href="../pengembalian/index.php"><span class="oi oi-inbox"></span>
-                            Pengembalian</a></li>
-                    <li><a href="../laporan/laporan_peminjaman.php"><span class="oi oi-book"></span>Laporan Peminjaman </a></li>
-                    <li><a href="../laporan/laporan_pengembalian.php"><span class="oi oi-book"></span>Laporan Pengembalian </a></li>
 
-                    <div class="d-block d-md-none">
-                        <div class="dropdown-divider"></div>
-                        <li><a href="#"> Profile</a></li>
-                        <li><a href="#"> Setting</a></li>
-                        <li>
-                            <form action="" method="POST">
 
-                                <button class="dropdown-item" style="cursor:pointer">Sign Out</button>
-                            </form>
+    <div class="flex flex-col md:flex-row">
 
-                        </li>
-                    </div>
+        <div class="bg-gray-800 shadow-xl h-16 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-60">
+
+            <div class="md:mt-12 md:w-60 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+                <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left">
+                    <li class="mr-3 flex-1">
+                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-home pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Home</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="../buku/index.php" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-book pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Buku</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="../anggota/index.php" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-user pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Anggota</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="../pengaturan_denda/index.php" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-money-bill pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">denda</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="../peminjaman/index.php" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-shopping-cart pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Peminjaman</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="../pengembalian/index.php" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-cart-arrow-down pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Pengembalian</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="../laporan/laporan_peminjaman.php" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-file-alt pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Laporan Peminjaman</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="../laporan/laporan_pengembalian.php" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <i class="fas fa-file-alt pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Laporan Pengmbalian</span>
+                        </a>
+                    </li>
                 </ul>
-                <div class="pl-3 d-none d-md-block position-fixed" style="bottom: 0px">
-                    <span class="oi oi-cog"></span> Setting
+            </div>
+
+
+        </div>
+
+        <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+
+            <div class="bg-gray-800 pt-3">
+                <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+                    <h3 class="font-bold pl-2">Perpustakaan</h3>
                 </div>
             </div>
-            <div class="col-lg-10 col-md-9 p-4">
-                <div class="row ">
-                    <div class="col-md-12 pl-3 pt-2">
-                        <div class="pl-3">
-
-                        </div>
-                    </div>
-                </div>
